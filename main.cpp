@@ -3,7 +3,7 @@
 #include <cstdlib>
 #include <ctime>
 #include <vector>
-
+#include <fstream>
 
 
 void print_vector(std::vector<int> vector) {
@@ -20,14 +20,17 @@ void play_game() {
 
     std::vector<int> guesses;
    // int guesses[250];
-    int guess_count = 0;
+    int count = 0;
 
     int random = rand() % 251;
-    //std::cout << random<<std::endl;
-    std::cout << "Guess a number: ";
+    std::cout << random<<std::endl;
+    std::cout << "Guess a number:\n ";
     while(true) {
         int guess;
         std::cin >> guess;
+
+        count++;
+
         guesses.push_back(guess);
         if(guess == random) {
             std::cout << "You win!\n";
@@ -39,6 +42,28 @@ void play_game() {
         }
     }
 
+    std::ifstream input("best_score.txt");
+
+  if(!(input.is_open())){
+    std::cout << "meeeh\n";
+    return;
+  }
+
+
+    int best_score;
+    input >> best_score;
+
+    std::ofstream output("best_score");
+  if(!(output.is_open())){
+    std::cout << "meeeh\n";
+    return;
+  }
+    if(count < best_score) {
+        output << count;
+    } else {
+      output << best_score;
+    }
+
 
     print_vector(guesses);
 
@@ -46,6 +71,7 @@ void play_game() {
 
 
 int main() {
+
 
 
     srand(time(NULL));
