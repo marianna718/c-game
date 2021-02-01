@@ -5,7 +5,7 @@
 #include <vector>
 #include <fstream>
 
-
+//need to creat best_score file at first
 void print_vector(std::vector<int> vector) {
 
     for(int i = 0; i < vector.size(); i++) {
@@ -92,12 +92,6 @@ int main() {
              break;
      }
     } while(choice != 0);
-
-
-
-
-
-
 
     return 0;
 }
