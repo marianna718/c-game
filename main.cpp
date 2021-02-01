@@ -2,13 +2,14 @@
 #include <string>
 #include <cstdlib>
 #include <ctime>
+#include <vector>
 
 
 
-void print_array(int array[], int count) {
+void print_vector(std::vector<int> vector) {
 
-    for(int i = 0; i < count; i++) {
-        std::cout << array[i] <<"\t";
+    for(int i = 0; i < vector.size(); i++) {
+        std::cout << vector[i] <<"\t";
     }
     std::cout << "\n";
 
@@ -17,8 +18,8 @@ void print_array(int array[], int count) {
 void play_game() {
 
 
-    
-    int guesses[250];
+    std::vector<int> guesses;
+   // int guesses[250];
     int guess_count = 0;
 
     int random = rand() % 251;
@@ -27,7 +28,7 @@ void play_game() {
     while(true) {
         int guess;
         std::cin >> guess;
-        guesses[guess_count++] = guess;
+        guesses.push_back(guess);
         if(guess == random) {
             std::cout << "You win!\n";
             break ;
@@ -39,7 +40,7 @@ void play_game() {
     }
 
 
-    print_array(guesses , guess_count);
+    print_vector(guesses);
 
 }
 
